@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ministério Vida - Integra</title>
+    <link rel="icon" href="coracao.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <header>
+                <h1> Ministério Vida </h1>
+                <p>Gerenciador de integrantes da igreja</p>
+                <p id="totalIntegrantes">Total: 0</p>
+            </header>
+            <main>
+                <div class="search-section">
+                    <input type="text" id="searchInput" placeholder="Buscar por nome ou CPF">
+                    <button id="searchButton">Buscar</button>
+                </div>
+                <div id="searchError" class="search-error hidden">Nenhum usuário encontrado com este nome ou CPF.</div>
+                <button id="addButton" class="full-width">Adicionar Integrante</button>
+                <div class="user-list-toggle">
+                    <button id="toggleButton" class="toggle-button">▼ Lista de Usuários</button>
+                </div>
+                <ul id="integrantesList" class="hidden"></ul>
+            </main>
+            <footer class="hidden">
+                <p id="message"></p>
+            </footer>
+        </div>
+    </div>
+
+    <div id="addModal" class="modal">
+        <div class="modal-content">
+            <h2>Adicionar Novo Integrante</h2>
+            <form id="addForm">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" placeholder="Digite o nome..." required>
+                
+                <label for="cpf">CPF</label>
+                <input type="text" id="cpf" required maxlength="14" placeholder="000.000.000-00">
+                
+                <label for="dataNascimento">Data de Nascimento</label>
+                <input type="date" id="dataNascimento" required>
+                
+                <label for="telefone">Número de Telefone</label>
+                <input type="text" id="telefone" required maxlength="15" placeholder="(##) #####-####">
+                
+                <div class="question-group">
+                    <label>Casado?</label>
+                    <div class="option-group">
+                        <label><input type="radio" name="casado" value="sim" required> Sim</label>
+                        <label><input type="radio" name="casado" value="nao"> Não</label>
+                    </div>
+                </div>
+                
+                <div class="question-group">
+                    <label>Batizado?</label>
+                    <div class="option-group">
+                        <label><input type="radio" name="batizado" value="sim" required> Sim</label>
+                        <label><input type="radio" name="batizado" value="nao"> Não</label>
+                    </div>
+                </div>
+                
+                <label for="ministerio">Interesse em Servir em um Ministério Específico</label>
+                <select id="ministerio" required>
+                    <option value="nao">Não</option>
+                    <option value="voluntarios">Voluntários</option>
+                    <option value="louvor">Louvor</option>
+                    <option value="danca">Dança</option>
+                    <option value="tecnico">Técnico</option>
+                    <option value="midia">Mídia</option>
+                </select>
+                <button type="submit">Adicionar</button>
+            </form>
+        </div>
+    </div>
+    
+    <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <h2>Erro</h2>
+            <p id="errorMessage">CPF já cadastrado</p>
+            <button id="confirmButton">Confirmar</button>
+        </div>
+    </div>
+
+    <div id="detailsModal" class="modal">
+        <div class="modal-content">
+            <h2>Detalhes do Integrante</h2>
+            <p id="detailsNome"></p>
+            <p id="detailsCpf"></p>
+            <p id="detailsDataNascimento"></p>
+            <p id="detailsTelefone"></p>
+            <p id="detailsCasado"></p>
+            <p id="detailsBatizado"></p>
+            <p id="detailsMinisterio"></p>
+            <button id="editButton" onclick="openEditUser()">Editar Integrante</button>
+            <button id="removeButton">Remover Integrante</button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
